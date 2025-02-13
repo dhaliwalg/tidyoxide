@@ -1,5 +1,6 @@
 use std::path::{PathBuf, Path};
 use walkdir::{WalkDir, DirEntry};
+use std::io;
 
 pub struct FileInformation {
     path: PathBuf,
@@ -7,8 +8,10 @@ pub struct FileInformation {
     is_directory: bool
 }
 
-fn walk_directories() {
+pub fn walk_directories() -> io::Result<()> {
     for entry in WalkDir::new(".") {
-        println!("{}", entry?.path().display());
+        let entry = entry?;
+        println!("{}", entry.path().display());  // Print the path of each entry
     }
+    Ok(())
 }

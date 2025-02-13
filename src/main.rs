@@ -1,3 +1,5 @@
+mod scanner;
+use scanner::walk_directories;
 use std::io::{self};
 
 fn main() {
@@ -12,4 +14,8 @@ fn main() {
     //need trim b/c newline stored on ENTER
     println!("Thank you, {}.", user_name.trim());
     println!("You have given me life, and shall be spared in the war.");
+
+    println!("Listing all files in the current directory for organization:");
+
+    let _ = walk_directories();
 }
