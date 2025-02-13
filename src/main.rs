@@ -1,5 +1,4 @@
-use std::io::{self, Write};
-use std::fs::File;
+use std::io::{self};
 
 fn main() {
     println!("Hello, world!");
@@ -13,11 +12,4 @@ fn main() {
     //need trim b/c newline stored on ENTER
     println!("Thank you, {}.", user_name.trim());
     println!("You have given me life, and shall be spared in the war.");
-    list_directory();
-}
-
-fn list_directory() -> std::io::Result<()>{
-    let mut file = File::create("foo.txt")?;
-    file.write_all(b"Hello, world!")?;
-    Ok(())
 }
