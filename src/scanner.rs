@@ -6,3 +6,9 @@ pub struct FileInformation {
     size: u64,
     is_directory: bool
 }
+
+fn walk_directories() {
+    for entry in WalkDir::new(".") {
+        println!("{}", entry?.path().display());
+    }
+}
