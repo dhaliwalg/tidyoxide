@@ -1,5 +1,4 @@
 mod scanner;
-use scanner::walk_directories;
 use std::io::{self};
 
 fn main() {
@@ -14,5 +13,4 @@ fn main() {
 
     //need trim b/c newline stored on ENTER
     let directory = directory.trim();
-    let _ = walk_directories(directory);
 }
