@@ -39,7 +39,7 @@ impl DirectoryScanner {
                 is_directory: entry_type.is_dir(),
             };
     
-            &self.files.push(found_file);
+            self.files.push(found_file);
         }
     
         for file_info in &self.files {
@@ -52,6 +52,7 @@ impl DirectoryScanner {
                 println!("{}, size {}", file_info.path.display().to_string().green(), file_info.size);
             }
         }
+        self.scan_complete = true;
         Ok(())
     }
 }
