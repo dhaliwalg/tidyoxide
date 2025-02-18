@@ -2,7 +2,7 @@ use colored::Colorize;
 use std::fs::FileType;
 use std::io;
 use std::path::PathBuf;
-use walkdir::WalkDir;
+use walkdir::{DirEntry, WalkDir};
 
 pub struct FileInformation {
     path: PathBuf,
@@ -41,7 +41,12 @@ impl DirectoryScanner {
     
             self.files.push(found_file);
         }
-    
+
+        self.scan_complete = true;
+        Ok(())
+    }
+
+    pub fn print_directories(&mut self){
         for file_info in &self.files {
             // Apply color depending on whether the entry is a directory or a file
             if file_info.is_directory {
@@ -52,7 +57,12 @@ impl DirectoryScanner {
                 println!("{}, size {}", file_info.path.display().to_string().green(), file_info.size);
             }
         }
-        self.scan_complete = true;
-        Ok(())
+    }
+
+    fn is_hidden(entry: &DirEntry) -> bool {
+        entry.file_name()
+             .to_str()
+             .map(|s| s.starts_with("."))
+             .unwrap_or(false)
     }
 }
