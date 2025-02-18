@@ -20,6 +20,9 @@ enum Commands {
         #[arg(long, default_value_t = false)]
         hidden: bool,
     },
+    Organize {
+
+    }
 }
 fn main() {
     // println!("Hello, world!");
@@ -40,9 +43,9 @@ fn main() {
     match cli.command {
         Commands::Scan { directory, hidden } => {
             let mut dir_scan = DirectoryScanner::new(&directory, hidden);
-            let _ = dir_scan.scan_directories();
-            dir_scan.print_directories();
+            dir_scan.scan_directories();
         }
+        Commands::Organize {  } => {}
 
         
     }
